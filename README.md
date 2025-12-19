@@ -1,37 +1,39 @@
-Automation Anywhere – UI & API Automation Assignment
+# Automation Anywhere – UI & API Automation Assignment
 
-Playwright Automation Framework
+---
 
-📌 Project Overview
+## Playwright Automation Framework
 
-This project demonstrates end-to-end automation for Automation Anywhere Community Edition using Playwright.
+---
+
+### 📌 Project Overview
+
+This project demonstrates **end-to-end automation** for **Automation Anywhere Community Edition** using **Playwright**.
+
 The automation covers:
 
-UI Automation (Task Bot & Form Designer)
+- UI Automation (Task Bot – Message Box)
+- UI Automation (Form Designer – Design Time)
+- API Automation (Learning Instance Creation)
+- Secure token-based authentication handling
+- Enterprise-grade test structure and reporting
 
-API Automation (Learning Instance creation)
+---
 
-Token-based authentication handling
+## 🧩 Technologies Used
 
-Enterprise-grade test structure and reporting
+- **Playwright (JavaScript)**
+- **Node.js**
+- **Automation Anywhere – Community Edition**
+- **REST APIs**
+- **dotenv (Environment Variables)**
+- **Playwright HTML Reporter**
 
-🧩 Technologies Used
+---
 
-Playwright (JavaScript)
+## 📂 Project Structure
 
-Node.js
-
-Automation Anywhere Community Edition
-
-REST APIs
-
-dotenv (Environment variables)
-
-HTML Reporter
-
-📂 Project Structure
 automation-anywhere-assignment/
-│
 ├── api/
 │   └── LearningInstanceAPI.js
 │
@@ -43,197 +45,251 @@ automation-anywhere-assignment/
 │   └── FormDesignerPage.js
 │
 ├── tests/
-│   ├── login.spec.js                # Use Case 1 – Task Bot
-│   ├── form-upload.spec.js          # Use Case 2 – Form Designer
+│   ├── login.spec.js                 # Use Case 1 – Task Bot
+│   ├── form-upload.spec.js           # Use Case 2 – Form Designer
 │   └── api/
 │       └── learning-instance.spec.js # Use Case 3 – API Automation
 │
-├── playwright.config.js
-├── playwright.config.api.js
-├── global-setup.js
-├── auth.json
-├── .env
+├── playwright.config.js              # UI automation config
+├── playwright.config.api.js          # API automation config
+├── global-setup.js                   # Token capture via UI login
+├── auth.json                         # Stored auth token
+├── .env                              # Credentials & IDs
 └── README.md
 
-🧪 Use Case 1: Create Task Bot – Message Box (UI Automation)
-Objective
+---
 
-Automate creation of a Task Bot and configure a Message Box action.
+## 🧪 Use Case 1 – Task Bot Automation (Message Box)
 
-Steps Automated
+---
 
-Launch Automation Anywhere portal
+### 🎯 Objective
 
-Login using valid credentials
+Automate the creation of a **Task Bot** and configure a **Message Box** action using Automation Anywhere UI.
 
-Navigate to Automation → Create
+---
 
-Select Task Bot
+### 🔄 Steps Automated
 
-Enter bot name
+- Launch Automation Anywhere Community Edition portal
+- Login using valid credentials
+- Navigate to **Automation → Create**
+- Select **Task Bot**
+- Enter Task Bot name
+- Add **Message Box** action
+- Configure:
+  - Message Title
+  - Message Content
+- Save the Task Bot
 
-Add Message Box action
+---
 
-Configure message title and content
+### ✅ Validations Performed
 
-Save the bot
+- Task Bot is created successfully
+- Message Box configuration is saved
+- Bot persists after page refresh
 
-Validation
+---
 
-Task Bot created successfully
+## 🧪 Use Case 2 – Form Designer Automation (Design Time)
 
-Message Box configuration saved
+---
 
-Bot persists after refresh
+### 🎯 Objective
 
-🧪 Use Case 2: Form Creation – TextBox & Select File (UI Automation)
-Objective
+Automate **Form creation and configuration** using **Form Designer** in Automation Anywhere.
 
-Automate Form creation and configuration using Form Designer.
+> ⚠️ This use case focuses strictly on **design-time automation**.
 
-Steps Automated
+---
 
-Login to Automation Anywhere
+### 🔄 Steps Automated
 
-Navigate to Automation → Create → Form
+- Login to Automation Anywhere
+- Navigate to **Automation → Create → Form**
+- Open **Form Designer**
+- Drag and drop:
+  - **Text Box**
+  - **Select File**
+- Configure element properties:
+  - Labels
+  - File formats
+- Save the form
+- Verify form persistence
 
-Create and open Form Designer
+---
 
-Drag and drop:
+### ✅ What Is Covered
 
-Text Box
+- Drag & Drop interactions
+- Canvas validation
+- Properties panel configuration
+- Save operation verification
+- Form persistence after reload
 
-Select File
+---
 
-Configure element properties
+### ⚠️ Limitation – File Upload Execution
 
-Save the form
+Forms in Automation Anywhere are executed **only at runtime** via **Task Bots** using the **Display Form** action.
 
-Verify form persistence
+Important clarifications:
 
-What Is Covered
+- **Preview** is a design-time feature only
+- Preview is used for:
+  - Layout alignment
+  - Positioning
+  - Screen size adjustments
+- Uploaded files in Preview:
+  - Are NOT persisted
+  - Are NOT submitted
+- Playwright automates browser UI only
+- Bot runtime execution is outside browser scope
 
-Drag & Drop interactions
+✔ Therefore, **actual file upload execution is intentionally NOT demonstrated**
 
-Canvas element validation
+✔ This aligns with Automation Anywhere platform behavior and enterprise automation best practices
 
-Properties configuration
+---
 
-Save operation verification
+## 🧪 Use Case 3 – Learning Instance Creation (API Automation)
 
-⚠️ Limitation – File Upload Execution
+---
 
-Forms in Automation Anywhere are executed only at runtime through Task Bots using the Display Form action.
+### 🎯 Objective
 
-The Preview option in Form Designer is strictly a design-time feature for layout adjustment and does not persist uploaded files.
+Create a **Learning Instance** using **Automation Anywhere REST APIs**.
 
-Since Playwright automates browser-based UI and cannot trigger bot runtime execution, actual file upload and submission are out of scope.
+---
 
-Therefore, this automation focuses on Form creation, configuration, and persistence only, which aligns with enterprise automation best practices.
+### 🔗 API Endpoint Used
 
-🧪 Use Case 3: Learning Instance Creation (API Automation)
-Objective
-
-Create a Learning Instance using Automation Anywhere REST APIs.
-
-Steps Automated
-
-Capture authentication token via UI login (global-setup)
-
-Store token in auth.json
-
-Load token in API test
-
-Send POST request to:
-
-/cognitive/v3/learninginstances
+POST /cognitive/v3/learninginstances
 
 
-Validate API response
+---
 
-Validations
+### 🔄 Steps Automated
 
-HTTP status code (200 / 201)
+- Login performed once via UI automation
+- Authentication token intercepted from network requests
+- Token stored securely in `auth.json`
+- Token reused in API test
+- Learning Instance created via API
 
-Response time threshold
+---
 
-Response schema validation
+### ✅ Validations Performed
 
-Functional accuracy of instance name
+- HTTP Status Code: **200 / 201**
+- Response time within acceptable threshold
+- Response schema validation:
+  - `id`
+  - `name`
+  - `status`
+- Functional validation of instance name
 
-🔐 Authentication Strategy
+---
 
-Login performed once using UI automation
+## 🔐 Authentication Strategy
 
-Token intercepted from network requests
+---
 
-Token saved in auth.json
+- UI login executed once using Playwright
+- Authentication token captured from network traffic
+- Token stored in `auth.json`
+- Token reused for API automation
 
-Reused securely for API tests
+✔ No hardcoded credentials  
+✔ No repeated login  
+✔ Secure and scalable approach  
 
-✅ No hardcoded credentials
-✅ No repeated login
-✅ Enterprise-grade approach
+---
 
-⚙️ Environment Setup
-1️⃣ Install Dependencies
+## ⚙️ Environment Setup
+
+---
+
+### 📦 Install Dependencies
+
 npm install
 
-2️⃣ Configure Environment Variables (.env)
+### 🔑 Configure Environment Variables (`.env`)
+
 AA_USERNAME=your_email
 AA_PASSWORD=your_password
 DOMAIN_ID=xxxx
 DOMAIN_LANGUAGE_ID=xxxx
 DOMAIN_LANGUAGE_PROVIDER_ID=xxxx
 
-▶️ Execution Commands
-Run UI Automation (Task Bot + Form)
+
+---
+
+## ▶️ Execution Commands
+
+---
+
+### Run All UI Tests
+
 npx playwright test
 
-Run Only Task Bot Test
+
+---
+
+### Run Task Bot Automation Only
+
 npx playwright test tests/login.spec.js
 
-Run Only Form Designer Test
+### Run Form Designer Automation Only
+
 npx playwright test tests/form-upload.spec.js
 
-Run API Automation Only
+### Run API Automation Only
+
 npx playwright test tests/api/learning-instance.spec.js --config=playwright.config.api.js
 
-📊 Reporting
+---
 
-HTML report generated automatically
+## 📊 Reporting
 
-Open report using:
+---
+
+Playwright generates an **HTML report** automatically after execution.
 
 npx playwright show-report
 
-📸 Screenshots
 
-Screenshots are automatically captured by Playwright on:
+---
 
-Test failures
+## 📸 Screenshots & Artifacts
 
-Assertion errors
+---
 
-Timeout issues
+Screenshots are captured automatically on:
 
-Located in:
+- Test failures
+- Assertion errors
+- Timeout issues
+
+📁 Location:
 
 test-results/
 
-✅ Key Highlights
 
-Clean Page Object Model (POM)
+---
 
-Clear separation of UI and API automation
+## 🏁 Conclusion
 
-Secure token handling
+---
 
-Realistic enterprise limitations explained
+This project demonstrates **professional-grade automation** aligned with **Automation Anywhere enterprise architecture**.
 
-Stable, maintainable, scalable test framework
+- Clean Page Object Model (POM)
+- Secure token handling
+- Honest platform limitation documentation
+- Stable, maintainable, scalable framework
 
-🏁 Conclusion
-
-This project demonstrates professional automation practices aligned with Automation Anywhere enterprise architecture.
-All automation steps are technically valid, honest, and production-ready.
+✔ Production-ready  
+✔ Enterprise-compliant  
+✔ Technically accurate  
