@@ -32,7 +32,7 @@ The automation covers:
 ---
 
 
-<p align="center">
+<p>
   <img src="docs/images/project-structure.png" alt="Project Structure" width="700">
 </p>
 ---
