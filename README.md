@@ -189,6 +189,27 @@ POST /cognitive/v3/learninginstances
 
 ---
 
+## 📸 Screenshots
+
+### 🔐 Login & Dashboard
+![Login Page](screenshots/taskbot.png)
+
+---
+
+### 🤖 Use Case 1 – Task Bot (Message Box)
+![Task Bot Created](screenshots/taskbot-created.png)
+
+---
+
+### 📝 Use Case 2 – Form Designer
+![Form Designer Canvas](screenshots/form-designer.png)
+
+---
+
+### 🔌 Use Case 3 – API Automation
+![Learning Instance API Response](screenshots/api-response.png)
+
+
 ### 📦 Install Dependencies
 
 npm install
