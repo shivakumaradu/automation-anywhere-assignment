@@ -33,7 +33,9 @@ The automation covers:
 
 ## 📂 Project Structure
 
-![alt text](image.png)
+<p align="center">
+  <img src="docs/images/project-structure.png" alt="Project Structure" width="700">
+</p>
 ---
 
 ## 🧪 Use Case 1 – Task Bot Automation (Message Box)
