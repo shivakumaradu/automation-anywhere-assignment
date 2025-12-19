@@ -31,7 +31,6 @@ The automation covers:
 
 ---
 
-## 📂 Project Structure
 
 <p align="center">
   <img src="docs/images/project-structure.png" alt="Project Structure" width="700">
