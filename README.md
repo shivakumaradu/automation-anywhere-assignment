@@ -33,30 +33,7 @@ The automation covers:
 
 ## 📂 Project Structure
 
-automation-anywhere-assignment/
-├── api/
-│   └── LearningInstanceAPI.js
-│
-├── pages/
-│   ├── LoginPage.js
-│   ├── DashboardPage.js
-│   ├── AutomationPage.js
-│   ├── TaskBotPage.js
-│   └── FormDesignerPage.js
-│
-├── tests/
-│   ├── login.spec.js                 # Use Case 1 – Task Bot
-│   ├── form-upload.spec.js           # Use Case 2 – Form Designer
-│   └── api/
-│       └── learning-instance.spec.js # Use Case 3 – API Automation
-│
-├── playwright.config.js              # UI automation config
-├── playwright.config.api.js          # API automation config
-├── global-setup.js                   # Token capture via UI login
-├── auth.json                         # Stored auth token
-├── .env                              # Credentials & IDs
-└── README.md
-
+![alt text](image.png)
 ---
 
 ## 🧪 Use Case 1 – Task Bot Automation (Message Box)
