@@ -191,8 +191,8 @@ POST /cognitive/v3/learninginstances
 
 ## 📸 Screenshots
 
-### 🔐 Login & Dashboard
-![Login Page](screenshots/taskbot.png)
+### 🔐 Task Bot
+![Task Bot](screenshots/taskbot.png)
 
 ---
 
